@@ -1,0 +1,72 @@
+/* HistoryVisits.css */
+.history-visits {
+  padding: 20px;
+}
+
+.section-title {
+  font-size: 32px;
+  margin-bottom: 30px;
+  color: #333;
+  font-weight: 700;
+}
+
+.visits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.visit-card {
+  background: #f9f9f9;
+  border-radius: 15px;
+  padding: 20px;
+  display: grid;
+  grid-template-columns: auto 100px 1fr auto;
+  gap: 20px;
+  align-items: center;
+  transition: all 0.3s;
+}
+
+.visit-card:hover {
+  background: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.visit-number {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff6b6b;
+  min-width: 30px;
+}
+
+.visit-date {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.visit-restaurant {
+  font-size: 16px;
+  color: #666;
+}
+
+.visit-status {
+  font-size: 14px;
+  color: #ff6b6b;
+  font-style: italic;
+  padding: 5px 10px;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 8px;
+}
+
+@media (max-width: 768px) {
+  .visit-card {
+    grid-template-columns: auto 1fr;
+    gap: 10px;
+  }
+
+  .visit-status {
+    grid-column: 1 / -1;
+  }
+}

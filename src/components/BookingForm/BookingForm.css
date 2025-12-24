@@ -1,14 +1,12 @@
 /* src/components/BookingForm/BookingForm.css */
-/* В BookingForm.css обновите первый селектор .booking-form */
 .booking-form {
-  background: rgba(255, 255, 255, 0.95);
+  background: white;
   border-radius: 25px;
-  padding: 30px;
-  box-shadow: 0 15px 50px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(10px);
-  max-width: 1000px;
-  margin: 0 auto;
+  padding: 40px;
   width: 100%;
+  border: none;
+  box-shadow: none;
+  backdrop-filter: none;
 }
 
 .booking-header {
@@ -17,499 +15,295 @@
   position: relative;
 }
 
+/* Кнопка назад - сделать ее менее заметной */
 .back-to-restaurant {
   position: absolute;
   left: 0;
-  top: 0;
-  background: #f0f0f0;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 25px;
-  font-size: 14px;
+  top: -15px;
+  background: #f5f5f5;
+  border: 1px solid #ddd;
+  padding: 8px 16px;
+  border-radius: 20px;
+  font-size: 13px;
   cursor: pointer;
   transition: all 0.3s;
-  color: #666;
+  color: #999; /* Сделать цвет светлее */
   display: flex;
   align-items: center;
-  gap: 8px;
+  gap: 6px;
+  white-space: nowrap;
+  max-width: 180px;
 }
 
 .back-to-restaurant:hover {
-  background: #e0e0e0;
+  background: #eee;
   transform: translateX(-5px);
+  color: #666; /* При наведении сделать немного темнее */
 }
 
-.booking-header h2 {
-  color: #333;
-  margin-bottom: 10px;
-  font-size: 28px;
-  font-weight: 800;
+/* Убрали стили для заголовков, так как они больше не используются */
+
+/* НОВАЯ СТРУКТУРА: МЕСЯЦ СЛЕВА, ВРЕМЯ СПРАВА */
+.booking-layout {
+  display: flex;
+  gap: 40px;
+  margin-top: 0; /* Убрали отступ сверху */
 }
 
-.restaurant-name {
-  color: #ff6b6b;
-  font-size: 18px;
-  font-weight: 600;
+/* ЛЕВАЯ ЧАСТЬ - КАЛЕНДАРЬ */
+.calendar-left {
+  flex: 1;
+  background: #f9f9f9;
+  border-radius: 20px;
+  padding: 30px;
+  border: 1px solid #eee;
+}
+
+.calendar-header-left {
+  text-align: left;
   margin-bottom: 20px;
 }
 
-.progress-bar {
-  display: flex;
-  justify-content: space-between;
-  margin: 40px 0;
-  position: relative;
+.calendar-header-left h4 {
+  font-size: 22px;
+  color: #333;
+  font-weight: 700;
+  margin-bottom: 15px;
 }
 
-.progress-bar::before {
-  content: '';
-  position: absolute;
-  top: 20px;
-  left: 10%;
-  right: 10%;
-  height: 4px;
-  background-color: #e0e0e0;
-  z-index: 1;
-}
-
-.progress-step {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  position: relative;
-  z-index: 2;
-  flex: 1;
-}
-
-.step-number {
-  width: 40px;
-  height: 40px;
-  background-color: #e0e0e0;
+/* Дни недели в сетке */
+.week-days-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 6px;
+  margin-bottom: 10px;
+  font-weight: 600;
   color: #666;
-  border-radius: 50%;
+}
+
+.week-day-cell {
+  text-align: center;
+  font-size: 14px;
+  padding: 5px 0;
+}
+
+/* КАЛЕНДАРЬ В ВИДЕ СЕТКИ */
+.calendar-grid-container {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+}
+
+.calendar-day-grid {
+  width: 100%;
+  aspect-ratio: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-weight: bold;
-  margin-bottom: 10px;
-  transition: all 0.3s;
-  font-size: 18px;
-  border: 4px solid white;
-}
-
-.progress-step.active .step-number {
-  background-color: #4CAF50;
-  color: white;
-  transform: scale(1.1);
-}
-
-.step-label {
-  color: #999;
+  border-radius: 8px;
   font-size: 14px;
-  text-align: center;
-  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s;
+  background: white;
+  border: 1px solid #ddd;
+  color: #333;
 }
 
-.progress-step.active .step-label {
-  color: #333;
+.calendar-day-grid:hover {
+  background: #f5f5f5;
+  border-color: #ff6b6b;
+  transform: translateY(-2px);
+}
+
+.calendar-day-grid.empty {
+  background: transparent;
+  border-color: transparent;
+  cursor: default;
+  visibility: hidden;
+}
+
+.calendar-day-grid.selected {
+  background: #ff6b6b;
+  border-color: #ff6b6b;
+  color: white;
   font-weight: 600;
 }
 
-.form-step {
-  padding: 20px 0 40px;
-}
-
-.form-step h3 {
-  color: #333;
-  margin-bottom: 30px;
-  text-align: center;
-  font-size: 22px;
-  font-weight: 700;
-}
-
-/* Календарь */
-.calendar-section {
-  background: #f8f9fa;
+/* ПРАВАЯ ЧАСТЬ - ВРЕМЯ */
+.time-right {
+  flex: 1;
+  background: #f9f9f9;
   border-radius: 20px;
-  padding: 25px;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-  margin-bottom: 30px;
+  padding: 30px;
+  border: 1px solid #eee;
 }
 
-.calendar-header h4 {
-  text-align: center;
+.time-section-title {
+  font-size: 18px;
   color: #333;
+  font-weight: 600;
   margin-bottom: 20px;
-  font-size: 20px;
-  font-weight: 700;
+  text-align: left;
+}
+
+.time-grid-right {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.time-row {
+  display: flex;
+  gap: 10px;
+  justify-content: flex-start;
+}
+
+.time-slot-right {
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: all 0.3s;
+  min-width: 80px;
+  text-align: center;
+  flex: 1;
+  color: #333;
+}
+
+.time-slot-right:hover,
+.time-slot-right.selected {
+  background: white;
+  border-color: #ff6b6b;
+  color: #ff6b6b;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.2);
+}
+
+/* Кнопка далее под всем контентом */
+.booking-footer {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.btn-next {
+  background: #ff6b6b;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 50px;
+  font-size: 18px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: white;
   text-transform: uppercase;
   letter-spacing: 1px;
 }
 
-.week-days {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-  margin-bottom: 15px;
-  text-align: center;
-  font-weight: 600;
-  color: #666;
-  font-size: 14px;
-}
-
-.calendar-grid {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-}
-
-.calendar-week {
-  display: grid;
-  grid-template-columns: repeat(7, 1fr);
-  gap: 10px;
-}
-
-.calendar-day {
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border-radius: 10px;
-  font-weight: 600;
-  font-size: 16px;
-  transition: all 0.3s;
-  cursor: pointer;
-}
-
-.calendar-day.has-day {
-  background: white;
-  color: #333;
-  border: 2px solid #e0e0e0;
-}
-
-.calendar-day.has-day:hover {
-  background: #4CAF50;
-  color: white;
-  border-color: #4CAF50;
-  transform: scale(1.05);
-}
-
-.calendar-day.empty {
-  background: transparent;
-  border: 2px solid transparent;
-  cursor: default;
-}
-
-.form-group {
-  margin-bottom: 30px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 12px;
-  color: #555;
-  font-weight: 600;
-  font-size: 15px;
-}
-
-.form-group input,
-.form-group textarea,
-.form-group select {
-  width: 100%;
-  padding: 15px 20px;
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  font-size: 16px;
-  transition: all 0.3s;
-  box-sizing: border-box;
-  font-family: inherit;
-}
-
-.form-group input:focus,
-.form-group textarea:focus {
-  border-color: #4CAF50;
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(76, 175, 80, 0.1);
-}
-
-.time-slots {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 12px;
-}
-
-.time-slot {
-  padding: 15px 10px;
-  background: #f5f5f5;
-  border: 2px solid #ddd;
-  border-radius: 12px;
-  cursor: pointer;
-  transition: all 0.3s;
-  font-size: 15px;
-  font-weight: 600;
-  color: #333;
-  text-align: center;
-}
-
-.time-slot:hover {
-  background: #e0e0e0;
-  border-color: #4CAF50;
-  color: #4CAF50;
+.btn-next:hover:not(:disabled) {
+  background: #ff5252;
   transform: translateY(-2px);
-}
-
-.time-slot.selected {
-  background: #4CAF50;
-  color: white;
-  border-color: #4CAF50;
-  transform: scale(1.05);
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.3);
-}
-
-.guests-selector {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 30px;
-  max-width: 300px;
-  margin: 0 auto;
-}
-
-.guest-btn {
-  width: 50px;
-  height: 50px;
-  background: #4CAF50;
-  color: white;
-  border: none;
-  border-radius: 50%;
-  font-size: 24px;
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s;
-  font-weight: bold;
-}
-
-.guest-btn:hover {
-  background: #45a049;
-  transform: scale(1.1);
-}
-
-.guests-display {
-  text-align: center;
-  min-width: 100px;
-}
-
-.guests-count {
-  font-size: 36px;
-  font-weight: 700;
-  color: #333;
-  display: block;
-  line-height: 1;
-}
-
-.guests-label {
-  color: #666;
-  font-size: 14px;
-  display: block;
-  margin-top: 5px;
-}
-
-.event-types {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 15px;
-}
-
-.event-type {
-  background-color: #f5f5f5;
-  border: 2px solid #ddd;
-  border-radius: 15px;
-  cursor: pointer;
-  transition: all 0.3s;
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
-  padding: 20px 15px;
-}
-
-.event-type:hover {
-  background-color: #e0e0e0;
-  border-color: #4CAF50;
-  transform: translateY(-5px);
-}
-
-.event-type.selected {
-  background-color: #4CAF50;
-  color: white;
-  border-color: #4CAF50;
-  transform: translateY(-5px) scale(1.02);
-}
-
-.event-icon {
-  font-size: 2rem;
-}
-
-.event-label {
-  font-weight: 600;
-  font-size: 15px;
-}
-
-.form-row {
-  display: flex;
-  gap: 20px;
-}
-
-.form-row .form-group {
-  flex: 1;
-}
-
-.confirmation-details {
-  background: #f9f9f9;
-  padding: 30px;
-  border-radius: 15px;
-  margin-bottom: 30px;
-}
-
-.detail-section {
-  margin-bottom: 25px;
-}
-
-.detail-section:last-child {
-  margin-bottom: 0;
-}
-
-.detail-section h4 {
-  color: #333;
-  margin-bottom: 20px;
-  font-size: 18px;
-  font-weight: 700;
-  border-bottom: 2px solid #4CAF50;
-  padding-bottom: 10px;
-}
-
-.detail-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-  gap: 15px;
-}
-
-.detail-item {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
-.detail-label {
-  color: #666;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.detail-value {
-  color: #333;
-  font-weight: 600;
-  font-size: 16px;
-}
-
-.comments-text {
-  background: white;
-  padding: 15px;
-  border-radius: 10px;
-  color: #555;
-  line-height: 1.5;
-  margin: 0;
-  border-left: 4px solid #4CAF50;
-}
-
-.confirmation-note {
-  display: flex;
-  gap: 20px;
-  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-  padding: 25px;
-  border-radius: 15px;
-  margin-bottom: 30px;
-  align-items: flex-start;
-}
-
-.note-icon {
-  font-size: 2rem;
-  flex-shrink: 0;
-}
-
-.note-content {
-  flex: 1;
-}
-
-.note-content p {
-  margin: 5px 0;
-  color: #2e7d32;
-}
-
-.note-small {
-  font-size: 14px;
-  opacity: 0.8;
-  margin-top: 10px !important;
-}
-
-.form-navigation {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 40px;
-  gap: 20px;
-}
-
-.btn-prev,
-.btn-next,
-.btn-submit {
-  padding: 15px 40px;
-  border: none;
-  border-radius: 12px;
-  font-size: 16px;
-  font-weight: 600;
-  cursor: pointer;
-  transition: all 0.3s;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-}
-
-.btn-prev {
-  background-color: #f5f5f5;
-  color: #666;
-}
-
-.btn-prev:hover {
-  background-color: #e0e0e0;
-  transform: translateX(-5px);
-}
-
-.btn-next,
-.btn-submit {
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-  color: white;
-}
-
-.btn-next:hover:not(:disabled),
-.btn-submit:hover {
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
-  transform: translateY(-3px);
-  box-shadow: 0 4px 15px rgba(76, 175, 80, 0.4);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
 }
 
 .btn-next:disabled {
   opacity: 0.5;
   cursor: not-allowed;
-  transform: none !important;
+  background: #ccc;
 }
 
-.btn-submit {
-  padding: 18px 50px;
+/* СТРАНИЦА ПОДТВЕРЖДЕНИЯ */
+.confirmation-simple {
+  text-align: center;
+  padding: 20px 0;
+}
+
+.confirmation-message {
+  background: white;
+  border-radius: 20px;
+  padding: 40px;
+  border: 1px solid #eee;
+  margin-bottom: 30px;
+}
+
+.confirmation-text {
+  color: #333;
+  margin-bottom: 20px;
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+/* Убрали блок с деталями бронирования */
+
+.confirmation-checkmark {
+  font-size: 60px; /* Увеличили размер галочки */
+  margin-bottom: 30px;
+  color: #4CAF50;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f0f9f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 30px;
+}
+
+.btn-submit-simple {
+  background: #ff6b6b;
+  border: none;
+  border-radius: 12px;
+  padding: 16px 50px;
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  color: white;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.btn-submit-simple:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 107, 0.3);
+}
+
+.form-navigation {
+  margin-top: 30px;
+  display: flex;
+  justify-content: center;
+}
+
+/* Адаптивность */
+@media (max-width: 900px) {
+  .booking-layout {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .calendar-left,
+  .time-right {
+    width: 100%;
+  }
+
+  .time-row {
+    flex-wrap: wrap;
+  }
+
+  .time-slot-right {
+    min-width: 70px;
+  }
+
+  .calendar-day-grid {
+    aspect-ratio: 1;
+  }
+
+  .confirmation-text {
+    font-size: 24px;
+  }
 }
 
 @media (max-width: 768px) {
@@ -517,66 +311,79 @@
     padding: 20px;
   }
 
-  .calendar-section {
-    padding: 15px;
+  .calendar-left,
+  .time-right {
+    padding: 20px;
   }
 
-  .time-slots {
-    grid-template-columns: repeat(3, 1fr);
+  .calendar-day-grid {
+    width: 36px;
+    height: 36px;
+    font-size: 13px;
   }
 
-  .week-days span {
-    font-size: 12px;
-  }
-
-  .calendar-day {
-    height: 35px;
+  .time-slot-right {
+    padding: 10px 15px;
     font-size: 14px;
+    min-width: 65px;
   }
 
-  .form-row {
-    flex-direction: column;
-    gap: 0;
-  }
-
-  .event-types {
-    grid-template-columns: 1fr;
-  }
-
-  .form-navigation {
-    flex-direction: column;
-  }
-
-  .btn-prev,
   .btn-next,
-  .btn-submit {
-    width: 100%;
-    margin: 5px 0;
+  .btn-submit-simple {
+    padding: 14px 30px;
+    font-size: 16px;
   }
 
-  .back-to-restaurant {
-    position: relative;
-    margin-bottom: 20px;
-    left: 0;
+  .confirmation-text {
+    font-size: 22px;
   }
 
-  .progress-bar {
-    margin: 30px 0;
-  }
-
-  .progress-bar::before {
-    left: 15%;
-    right: 15%;
+  .confirmation-checkmark {
+    font-size: 48px;
+    width: 70px;
+    height: 70px;
   }
 }
 
 @media (max-width: 480px) {
-  .time-slots {
-    grid-template-columns: repeat(2, 1fr);
+  .booking-form {
+    padding: 15px;
   }
 
-  .calendar-day {
-    height: 30px;
+  .calendar-day-grid {
+    width: 32px;
+    height: 32px;
     font-size: 12px;
+  }
+
+  .week-day-cell {
+    font-size: 12px;
+  }
+
+  .time-slot-right {
+    padding: 8px 12px;
+    font-size: 13px;
+    min-width: 60px;
+  }
+
+  .back-to-restaurant {
+    position: relative;
+    margin-bottom: 15px;
+    left: 0;
+    margin: 0 auto 20px;
+    display: block;
+    width: fit-content;
+  }
+
+  .confirmation-text {
+    font-size: 20px;
+    padding: 0 10px;
+  }
+
+  .confirmation-checkmark {
+    font-size: 40px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 20px;
   }
 }

@@ -1,4 +1,10 @@
 /* src/App.css */
+:root {
+  --pink-glass: rgba(255, 192, 203, 0.6);
+  --pink-glass-strong: rgba(255, 182, 193, 0.75);
+  --pink-border: rgba(255, 182, 193, 0.45);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -13,15 +19,15 @@
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 }
 
-/* Шапка */
+/* Шапка - ПРОЗРАЧНАЯ с розовым фоном */
 .app-header {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 192, 203, 0.9); /* Розовый фон */
   backdrop-filter: blur(10px);
   padding: 15px 40px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   position: sticky;
   top: 0;
   z-index: 1000;
+  border-bottom: 1px solid rgba(255, 182, 193, 0.5);
 }
 
 .header-container {
@@ -30,27 +36,30 @@
   align-items: center;
   max-width: 1400px;
   margin: 0 auto;
+  position: relative;
 }
 
-/* Поиск в левом углу */
+/* Левая часть - поиск */
 .search-container {
   flex: 1;
+  display: flex;
+  justify-content: flex-start;
 }
 
 .search-panel {
   display: flex;
   align-items: center;
-  background: #f0f0f0;
+  background: rgba(255, 255, 255, 0.8); /* Полупрозрачный белый */
   border-radius: 50px;
   padding: 10px 20px;
-  max-width: 300px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  width: 300px;
+  border: 1px solid rgba(255, 182, 193, 0.5);
   transition: all 0.3s ease;
 }
 
 .search-panel:hover {
-  background: #e8e8e8;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.15);
+  background: rgba(255, 255, 255, 0.9);
+  border-color: rgba(255, 182, 193, 0.8);
 }
 
 .search-icon {
@@ -73,71 +82,52 @@
   color: #999;
 }
 
-/* В App.css обновите стили логотипа */
-.logo-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-  flex: 1;
-}
-
-.glasses {
+/* Центр - логотип */
+/* Обновленный логотип очков в шапке */
+.logo-container .glasses {
   position: relative;
   width: 60px;
-  height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  height: 17px;
 }
 
-.glass {
-  width: 30px;
-  height: 30px;
-  border: 3px solid #000;
+.logo-container .glass {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #000;
   border-radius: 50%;
-  position: relative;
+  background: transparent;
 }
 
-.bridge {
+.logo-container .glass.left {
+  left: 0;
+  top: 0;
+}
+
+.logo-container .glass.right {
+  right: 0;
+  top: 0;
+}
+
+.logo-container .bridge {
+  position: absolute;
   width: 8px;
-  height: 3px;
+  height: 2px;
   background: #000;
-  margin: 0 2px;
+  left: 50%;
+  top: 11px;
+  transform: translateX(-50%);
 }
 
 .logo-text {
   font-size: 32px;
-  font-weight: 800;
+  font-weight: 400;
   color: #000;
   letter-spacing: 3px;
   text-transform: uppercase;
   margin: 0;
 }
-
-@media (max-width: 768px) {
-  .logo-container {
-    flex-direction: row;
-    gap: 10px;
-  }
-
-  .logo-text {
-    font-size: 24px;
-  }
-
-  .glasses {
-    width: 40px;
-    height: 20px;
-  }
-
-  .glass {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #000;
-  }
-}
-
-/* Кнопка входа в правом углу */
+/* Правая часть - кнопка входа */
 .auth-container {
   flex: 1;
   display: flex;
@@ -145,7 +135,7 @@
 }
 
 .login-btn {
-  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  background: #000;
   color: white;
   border: none;
   border-radius: 50px;
@@ -154,12 +144,11 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.3s ease;
-  box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
 }
 
 .login-btn:hover {
+  background: #333;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
 }
 
 /* Основное содержимое */
@@ -173,18 +162,18 @@
   width: 100%;
 }
 
-/* Боковая панель с фильтрами */
+/* Боковая панель с фильтрами - РОЗОВЫЙ ФОН */
 .sidebar {
   width: 280px;
   flex-shrink: 0;
 }
 
 .filters-panel {
-  background: rgba(255, 255, 255, 0.95);
+  background: rgba(255, 192, 203, 0.7); /* Розовый полупрозрачный */
   border-radius: 20px;
   padding: 25px;
-  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
   backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 182, 193, 0.5);
 }
 
 .filters-title {
@@ -198,7 +187,7 @@
 .filter-section {
   margin-bottom: 25px;
   padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid rgba(255, 182, 193, 0.5);
 }
 
 .filter-section:last-child {
@@ -220,18 +209,13 @@
 }
 
 .filter-option {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  cursor: pointer;
-  color: #666;
-  font-size: 14px;
-  transition: color 0.3s;
+  background: var(--pink-glass);
 }
 
 .filter-option:hover {
-  color: #333;
+  background: var(--pink-glass-strong);
 }
+
 
 .filter-option input[type="checkbox"],
 .filter-option input[type="radio"] {
@@ -241,10 +225,9 @@
 }
 
 .rating-filter {
-  display: flex;
-  align-items: center;
-  gap: 10px;
+  background: var(--pink-glass);
 }
+
 
 .stars {
   color: #ffd700;
@@ -280,33 +263,31 @@
 }
 
 .apply-filters {
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e8e 100%);
+  background: #000;
   color: white;
-  box-shadow: 0 4px 15px rgba(255, 107, 107, 0.4);
 }
 
 .apply-filters:hover {
+  background: #333;
   transform: translateY(-2px);
-  box-shadow: 0 6px 20px rgba(255, 107, 107, 0.6);
 }
 
 .reset-filters {
-  background: #f0f0f0;
-  color: #666;
+  background: var(--pink-glass);
+  color: #444;
+  border: 1px solid var(--pink-border);
 }
 
 .reset-filters:hover {
-  background: #e0e0e0;
+  background: var(--pink-glass-strong);
 }
 
 /* Центральная панель с контентом */
 .content {
   flex: 1;
-  min-width: 0; /* Для правильного сжатия */
-  transition: all 0.3s ease;
+  min-width: 0;
 }
 
-/* Контент на всю ширину когда нет боковой панели */
 .content-full-width {
   width: 100%;
   max-width: 100%;
@@ -370,17 +351,22 @@
     gap: 20px;
   }
 
+  .logo-container {
+    position: relative;
+    left: 0;
+    transform: none;
+    order: -1;
+    margin-bottom: 10px;
+  }
+
   .search-container,
   .auth-container {
     width: 100%;
+    justify-content: center;
   }
 
   .search-panel {
     max-width: 100%;
-  }
-
-  .login-btn {
-    width: 100%;
   }
 
   .content-full-width {
@@ -412,34 +398,6 @@
     gap: 15px;
   }
 }
-/* Добавьте в конец App.css */
-@media (max-width: 768px) {
-  .logo-container {
-    flex-direction: column;
-    gap: 5px;
-  }
-
-  .logo-text {
-    font-size: 24px;
-    letter-spacing: 2px;
-  }
-
-  .glasses {
-    width: 40px;
-    height: 20px;
-  }
-
-  .glass {
-    width: 20px;
-    height: 20px;
-    border: 2px solid #000;
-  }
-
-  .bridge {
-    width: 5px;
-    height: 2px;
-  }
-}
 
 @media (max-width: 480px) {
   .app-header {
@@ -454,4 +412,1344 @@
     padding: 8px 20px;
     font-size: 14px;
   }
+}
+/* Добавить в конец src/App.css */
+
+/* Размытый фон страницы ресторана при бронировании */
+.restaurant-background-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 100;
+  backdrop-filter: blur(10px);
+  background: rgba(255, 192, 203, 0.3);
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.restaurant-background-blur .restaurant-detail-new {
+  opacity: 0.5;
+  pointer-events: none;
+  transform: scale(0.95);
+  filter: blur(5px);
+}
+
+/* Белая плашка бронирования поверх фона */
+/* В App.css обновите стили для .booking-overlay, если нужно */
+.booking-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 90%;
+  max-width: 800px;
+  max-height: 90vh;
+  overflow-y: auto;
+  background: white;
+  border-radius: 25px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* Если нужно сделать форму более компактной после удаления заголовков */
+.booking-overlay .booking-form {
+  padding: 30px; /* Можно уменьшить padding */
+}
+/* Адаптивность для бронирования */
+@media (max-width: 768px) {
+  .booking-overlay {
+    width: 95%;
+    max-height: 95vh;
+    padding: 10px;
+  }
+
+  .restaurant-background-blur {
+    display: none;
+  }
+
+  .booking-overlay .booking-form {
+    padding: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-overlay {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+  }
+}
+/* Добавить в конец src/App.css */
+
+/* Полностью размытый фон всей страницы при бронировании */
+.full-page-blur {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 90;
+  backdrop-filter: blur(15px);
+  background: rgba(255, 192, 203, 0.4);
+  overflow: hidden;
+}
+
+/* Размытая страница ресторана */
+.restaurant-background-blur {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  padding: 20px;
+}
+
+.restaurant-background-blur .restaurant-detail-new {
+  opacity: 0.4;
+  pointer-events: none;
+  transform: scale(0.97);
+  filter: blur(8px);
+}
+
+/* Белая плашка бронирования поверх всего */
+.booking-overlay {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+  width: 90%;
+  max-width: 850px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background: white;
+  border-radius: 30px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.35);
+}
+
+/* Блюр для шапки, боковой панели и подвала при бронировании */
+.app-header.blurred,
+.sidebar.blurred,
+.app-footer.blurred {
+  backdrop-filter: blur(15px);
+  background: rgba(255, 192, 203, 0.3);
+  opacity: 0.7;
+  pointer-events: none; /* Запрещаем взаимодействие */
+}
+
+/* Шапка с повышенным z-index чтобы быть поверх блюра */
+.app-header {
+  z-index: 70;
+  position: sticky;
+  top: 0;
+}
+
+/* Подвал с повышенным z-index */
+.app-footer {
+  z-index: 150;
+  position: relative;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+  .booking-overlay {
+    width: 95%;
+    max-height: 90vh;
+    border-radius: 20px;
+  }
+
+  .full-page-blur {
+    backdrop-filter: blur(10px);
+  }
+
+  .restaurant-background-blur {
+    display: none;
+  }
+
+  /* На мобильных меньше блюра для шапки */
+  .app-header.blurred,
+  .app-footer.blurred {
+    backdrop-filter: blur(8px);
+  }
+}
+
+@media (max-width: 480px) {
+  .booking-overlay {
+    width: 100%;
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0;
+    top: 0;
+    transform: none;
+    left: 0;
+  }
+
+  .full-page-blur {
+    display: none;
+  }
+
+  /* На очень маленьких экранах убираем блюр у шапки */
+  .app-header.blurred {
+    backdrop-filter: none;
+    background: rgba(255, 192, 203, 0.9);
+  }
+}
+/* Добавить в конец App.css */
+
+/* Стили для отсутствия результатов */
+.no-results {
+  text-align: center;
+  padding: 60px 20px;
+  background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+  border-radius: 20px;
+  margin: 20px 0;
+}
+
+.no-results h3 {
+  color: #333;
+  margin-bottom: 15px;
+  font-size: 24px;
+}
+
+.no-results p {
+  color: #666;
+  font-size: 16px;
+}
+
+/* Обновленные стили для фильтров */
+.filter-section h4 {
+  color: #555;
+  margin-bottom: 15px;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.filter-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: #666;
+  font-size: 14px;
+  padding: 8px 12px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.filter-option:hover {
+  color: #333;
+  transform: translateX(5px);
+}
+
+.filter-option input[type="checkbox"],
+.filter-option input[type="radio"] {
+  accent-color: #ff6b6b;
+  width: 18px;
+  height: 18px;
+  cursor: pointer;
+}
+
+/* Рейтинг */
+.rating-filter {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 10px;
+  border-radius: 10px;
+}
+
+.stars {
+  color: #ffd700;
+  font-size: 20px;
+  letter-spacing: 2px;
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+
+
+.rating-text {
+  color: #666;
+  font-size: 14px;
+  white-space: nowrap;
+}
+
+
+/* Логотип CHOICE потоньше */
+.logo-text {
+  font-size: 32px;
+  font-weight: 600; /* Было 800, стало 600 */
+  color: #000;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  margin: 0;
+}
+/* Стили для компактных фильтров */
+.compact-filters .filter-section {
+  margin-bottom: 15px;
+  padding-bottom: 15px;
+}
+
+.compact-filters .filter-section h4 {
+  font-size: 14px;
+  margin-bottom: 10px;
+  color: #444;
+}
+
+.compact-filters .filter-options {
+  gap: 8px;
+}
+
+.compact-filters .filter-option {
+  padding: 6px 10px;
+  font-size: 13px;
+}
+
+/* Кнопка показать все */
+/* В App.css обновите стили для .show-all-btn */
+
+/* Кнопка показать все - черный текст и подчеркнутая */
+.show-all-btn {
+  width: 100%;
+  padding: 12px;
+  border: none; /* Убрали пунктирную границу */
+  background: transparent; /* Прозрачный фон */
+  border-radius: 10px;
+  color: #000; /* Черный цвет текста */
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  margin: 10px 0;
+  transition: all 0.3s;
+  text-decoration: underline; /* Подчеркивание */
+  text-underline-offset: 3px; /* Отступ подчеркивания от текста */
+  text-decoration-thickness: 2px; /* Толщина подчеркивания */
+  text-decoration-color: #000; /* Черное подчеркивание */
+}
+
+.show-all-btn:hover {
+  background: rgba(0, 0, 0, 0.05); /* Слегка темный фон при наведении */
+  text-decoration-color: #ff6b6b; /* Розовое подчеркивание при наведении */
+  color: #333; /* Чуть светлее черный при наведении */
+}
+
+/* Также нужно добавить индикатор выбранных фильтров */
+.filter-option.selected span {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+/* Улучшить видимость выбранных радио-кнопок */
+.filter-option input[type="radio"]:checked + span {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+/* Стили для квадратных прайс-кнопок */
+.price-options {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.price-option {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+  color: #666;
+  font-size: 14px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  transition: all 0.3s;
+}
+
+.price-option:hover {
+  background: rgba(255, 107, 107, 0.1);
+  color: #333;
+}
+
+/* Скрыть нативный checkbox */
+.price-checkbox {
+  display: none;
+}
+
+/* Стили для кастомного квадратного чекбокса */
+.price-option .price-label {
+  position: relative;
+  padding-left: 30px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.price-option .price-label::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+  border: 2px solid #ddd;
+  border-radius: 4px;
+  background: white;
+  transition: all 0.3s;
+}
+
+/* Стили для выбранного состояния */
+.price-checkbox:checked + .price-label::before {
+  background: #ff6b6b;
+  border-color: #ff6b6b;
+}
+
+.price-checkbox:checked + .price-label::after {
+  content: '✓';
+  position: absolute;
+  left: 4px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.price-checkbox:checked + .price-label {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+/* Символы рубля */
+.ruble-symbol {
+  font-family: Arial, sans-serif;
+  color: #666;
+  margin-left: 5px;
+}
+
+.price-checkbox:checked + .price-label .ruble-symbol {
+  color: #ff6b6b;
+}
+
+/* Адаптивность для прайс-фильтра */
+@media (max-width: 768px) {
+  .price-option {
+    padding: 8px 10px;
+    font-size: 13px;
+  }
+
+  .price-option .price-label::before {
+    width: 18px;
+    height: 18px;
+  }
+
+  .price-checkbox:checked + .price-label::after {
+    left: 3px;
+    font-size: 13px;
+  }
+}
+
+/* Отступ для расширенных фильтров */
+.filter-section:has(+ .filter-section) {
+  margin-bottom: 25px;
+}
+
+/* Анимация для появления дополнительных фильтров */
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.filters-panel .filter-section:nth-child(n+5) {
+  animation: slideDown 0.3s ease-out;
+}
+.filter-option.selected span {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+
+/* Улучшить видимость выбранных радио-кнопок */
+.filter-option input[type="radio"]:checked + span {
+  color: #ff6b6b;
+  font-weight: 600;
+}
+/* Добавить в App.css */
+
+/* Кнопка профиля */
+.profile-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 25px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.profile-btn:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+}
+
+/* Кнопка входа */
+/* В App.css обновите кнопку Войти */
+.login-btn {
+  background: black; /* Синий цвет как на скриншоте */
+  color: white;
+  border: none;
+  border-radius: 50px;
+  padding: 12px 35px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.login-btn:hover {
+  background: black;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(0, 123, 255, 0.3);
+}
+/* Добавьте в конец App.css */
+
+/* Стили для страниц истории и отзывов */
+.history-visits-page,
+.leave-review-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+  padding: 40px;
+}
+
+.history-content,
+.leave-review-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+}
+
+.history-header,
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #ffc0cb;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.back-btn:hover {
+  background: rgba(255, 192, 203, 0.2);
+  transform: translateX(-5px);
+}
+
+.history-title,
+.review-title {
+  font-size: 32px;
+  color: #333;
+  font-weight: 700;
+  text-align: center;
+  flex: 1;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 15px;
+  border-radius: 10px;
+  background: rgba(255, 192, 203, 0.2);
+}
+
+.user-avatar {
+  font-size: 20px;
+}
+
+.user-name {
+  font-weight: 600;
+  color: #333;
+}
+
+.visits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.visit-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 50px 120px 1fr 150px;
+  gap: 25px;
+  align-items: center;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.visit-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.visit-number {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff6b6b;
+  text-align: center;
+}
+
+.visit-date {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.visit-restaurant {
+  font-size: 16px;
+  color: #666;
+}
+
+.visit-status {
+  font-size: 14px;
+  color: #ff6b6b;
+  font-style: italic;
+  padding: 8px 15px;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+/* Стили для формы отзыва */
+.review-subtitle {
+  font-size: 16px;
+  color: #666;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+
+.review-form {
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.review-select {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 100%;
+  background: white;
+  transition: all 0.3s;
+}
+
+.review-select:focus {
+  outline: none;
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+}
+
+.rating-stars {
+  display: flex;
+  gap: 5px;
+}
+
+.rating-stars .star {
+  font-size: 32px;
+  color: #ddd;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.rating-stars .star:hover,
+.rating-stars .star.active {
+  color: #ffd700;
+  transform: scale(1.1);
+}
+
+.review-textarea {
+  padding: 12px 15px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  width: 100%;
+  resize: vertical;
+  font-family: inherit;
+  transition: all 0.3s;
+}
+
+.review-textarea:focus {
+  outline: none;
+  border-color: #ff6b6b;
+  box-shadow: 0 0 0 2px rgba(255, 107, 107, 0.2);
+}
+
+.review-submit-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 15px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  margin-top: 10px;
+  align-self: flex-start;
+}
+
+.review-submit-btn:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+.success-message {
+  text-align: center;
+  padding: 40px 20px;
+}
+
+.success-icon {
+  font-size: 60px;
+  color: #4CAF50;
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  background: #f0f9f0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+}
+
+.success-title {
+  font-size: 28px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.success-text {
+  color: #666;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+@media (max-width: 768px) {
+  .history-visits-page,
+  .leave-review-page {
+    padding: 20px;
+  }
+
+  .history-content,
+  .leave-review-content {
+    padding: 20px;
+  }
+
+  .history-header,
+  .review-header {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .back-btn {
+    align-self: flex-start;
+  }
+
+  .visit-card {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .visit-status {
+    grid-column: 1;
+  }
+
+  .user-info {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+/* Добавьте в конец App.css */
+
+/* Стили для страниц истории и отзывов */
+.history-visits-page,
+.user-reviews-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+  padding: 40px;
+}
+
+.history-content,
+.reviews-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+}
+
+.history-header,
+.reviews-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #ffc0cb;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 2px solid #ffc0cb;
+}
+
+.back-btn:hover {
+  background: rgba(255, 192, 203, 0.2);
+  transform: translateX(-5px);
+  border-color: #ff6b6b;
+}
+
+.history-title,
+.reviews-title {
+  font-size: 32px;
+  color: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+  font-weight: 700;
+  text-align: center;
+  flex: 1;
+}
+
+
+
+.visits-list,
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.visit-card,
+.review-card {
+  background: none;
+  border-radius: 20px;
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 50px 120px 1fr 100px auto;
+  gap: 20px;
+  align-items: center;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.visit-card:hover,
+.review-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.visit-number,
+.review-number {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+.visit-date,
+.review-date {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.visit-restaurant,
+.review-restaurant {
+  font-size: 16px;
+  color: #666;
+}
+
+.visit-status {
+  font-size: 14px;
+  color: black;
+  font-style: italic;
+  padding: 8px 15px;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.review-rating {
+  color: #ffd700;
+  font-size: 20px;
+  text-align: center;
+}
+
+.review-text {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+  padding: 8px 12px;
+  background: rgba(255, 192, 203, 0.1);
+  border-radius: 8px;
+  border-left: 3px solid #ff6b6b;
+}
+
+.no-visits,
+.no-reviews {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 18px;
+}
+
+.add-review-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: all 0.3s;
+}
+
+.add-review-btn:hover {
+  background: #ff5252;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+}
+
+@media (max-width: 1024px) {
+  .visit-card,
+  .review-card {
+    grid-template-columns: 50px 1fr auto;
+    gap: 15px;
+  }
+
+  .visit-restaurant,
+  .review-restaurant,
+  .visit-status,
+  .review-rating {
+    grid-column: 2 / span 2;
+  }
+
+  .review-text {
+    grid-column: 1 / span 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .history-visits-page,
+  .user-reviews-page {
+    padding: 20px;
+  }
+
+  .history-content,
+  .reviews-content {
+    padding: 20px;
+  }
+
+  .history-header,
+  .reviews-header {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .back-btn {
+    align-self: flex-start;
+  }
+
+  .visit-card,
+  .review-card {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .visit-status,
+  .review-text,
+  .review-rating {
+    grid-column: 1;
+  }
+
+  .user-info {
+    align-self: stretch;
+    justify-content: center;
+  }
+}
+/* Добавьте в конец App.css */
+
+/* Стили для страниц истории и отзывов */
+.history-visits-page,
+.user-reviews-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+  padding: 20px 40px 40px;
+}
+
+.page-header {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  margin-bottom: 20px;
+}
+
+.page-header .logo-container {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+.page-header .glasses-logo {
+  position: relative;
+  width: 60px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-header .glass {
+  width: 25px;
+  height: 25px;
+  border: 3px solid #000;
+  border-radius: 50%;
+  background: transparent;
+  position: relative;
+}
+
+.page-header .glass-left {
+  position: absolute;
+  left: 0;
+}
+
+.page-header .glass-right {
+  position: absolute;
+  right: 0;
+}
+
+.page-header .bridge {
+  width: 8px;
+  height: 3px;
+  background: #000;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.page-header .logo-text {
+  font-size: 32px;
+  font-weight: 600;
+  letter-spacing: 3px;
+  color: #000;
+  margin: 0;
+}
+
+.history-content,
+.reviews-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+}
+
+.history-header,
+.reviews-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #ffc0cb;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  padding: 10px 15px;
+  border-radius: 10px;
+  border: 2px solid #ffc0cb;
+}
+
+.history-title,
+.reviews-title {
+  font-size: 32px;
+  color: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+  font-weight: 700;
+  text-align: center;
+  flex: 1;
+}
+
+.visits-list,
+.reviews-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.visit-card,
+.review-card {
+  background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+  border-radius: 20px;
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 50px 120px 1fr 100px auto;
+  gap: 20px;
+  align-items: center;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  /* Убрана анимация */
+}
+
+.visit-number,
+.review-number {
+  font-size: 20px;
+  font-weight: bold;
+  color: black;
+  text-align: center;
+}
+
+.visit-date,
+.review-date {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.visit-restaurant,
+.review-restaurant {
+  font-size: 16px;
+  color: #666;
+}
+
+.visit-status {
+  font-size: 14px;
+  color: black;
+  font-style: italic;
+  padding: 8px 15px;
+  background: dark-pink;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.review-rating {
+  color: #ffd700;
+  font-size: 20px;
+  text-align: center;
+}
+
+.review-text {
+  font-size: 14px;
+  color: #666;
+  font-style: italic;
+  padding: 8px 12px;
+  background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+  border-radius: 8px;
+  border-left: 3px solid #ff6b6b;
+}
+
+.no-visits,
+.no-reviews {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 18px;
+}
+
+.add-review-btn {
+  background: #ff6b6b;
+  color: white;
+  border: none;
+  border-radius: 12px;
+  padding: 12px 24px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 20px;
+}
+
+@media (max-width: 1024px) {
+  .visit-card,
+  .review-card {
+    grid-template-columns: 50px 1fr auto;
+    gap: 15px;
+  }
+
+  .visit-restaurant,
+  .review-restaurant,
+  .visit-status,
+  .review-rating {
+    grid-column: 2 / span 2;
+  }
+
+  .review-text {
+    grid-column: 1 / span 3;
+  }
+}
+
+@media (max-width: 768px) {
+  .history-visits-page,
+  .user-reviews-page {
+    padding: 10px 20px 20px;
+  }
+
+  .page-header {
+    padding: 10px 0;
+  }
+
+  .page-header .logo-text {
+    font-size: 24px;
+  }
+
+  .page-header .glasses-logo {
+    width: 50px;
+    height: 25px;
+  }
+
+  .page-header .glass {
+    width: 20px;
+    height: 20px;
+  }
+
+  .history-content,
+  .reviews-content {
+    padding: 20px;
+  }
+
+  .history-header,
+  .reviews-header {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .back-btn {
+    align-self: flex-start;
+  }
+
+  .visit-card,
+  .review-card {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .visit-status,
+  .review-text,
+  .review-rating {
+    grid-column: 1;
+  }
+}
+/* Добавьте эти стили в App.css для страниц истории и отзывов */
+.page-header .glasses-logo {
+  position: relative;
+  width: 60px;
+  height: 25px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-header .glass {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border: 2px solid #000;
+  border-radius: 50%;
+  background: transparent;
+}
+
+.page-header .glass-left {
+  left: 0;
+  top: 0;
+}
+
+.page-header .glass-right {
+  right: 0;
+  top: 0;
+}
+
+.page-header .bridge {
+  position: absolute;
+  width: 8px;
+  height: 2px;
+  background: #000;
+  left: 50%;
+  top: 11px;
+  transform: translateX(-50%);
 }

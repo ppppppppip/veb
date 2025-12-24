@@ -1,58 +1,7 @@
-// src/components/RestaurantList/RestaurantList.jsx
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import './RestaurantList.css';
 
-const RestaurantList = ({ onSelectRestaurant, searchQuery = '' }) => {
-  const [filteredRestaurants, setFilteredRestaurants] = useState([]);
-
-  const restaurants = [
-    {
-      id: 1,
-      name: 'Приземление',
-      cuisine: 'Европейская',
-      rating: 4.8,
-      reviews: 521,
-      description: 'Шикарная атмосфера! Вкусные блюда <3',
-      image: 'https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=400&h=300&fit=crop',
-      price: '💰💰 1000-3000 ₽',
-      menu: ['Основное меню', 'Фуршетное меню', 'Барная карта'],
-      reviewTexts: ['"Шикарная атмосфера!"', '"Вкусные блюда <3"']
-    },
-    {
-      id: 2,
-      name: 'Азиатский уголок',
-      cuisine: 'Азиатская',
-      rating: 4.6,
-      reviews: 448,
-      description: 'Дружелюбный персонал, хороший ассортимент!!!',
-      image: 'https://images.unsplash.com/photo-1559329007-40df8a9345d8?w=400&h=300&fit=crop',
-      price: '💰 До 1000 ₽',
-      menu: ['Основное меню', 'Фуршетное меню'],
-      reviewTexts: ['"Дружелюбный персонал!"', '"Хороший ассортимент!!!"']
-    },
-    {
-      id: 3,
-      name: 'Итальянский дворик',
-      cuisine: 'Итальянская',
-      rating: 4.7,
-      reviews: 312,
-      description: 'Настоящая итальянская кухня, домашняя паста',
-      image: 'https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?w=400&h=300&fit=crop',
-      price: '💰💰💰 От 3000 ₽',
-      menu: ['Основное меню', 'Барная карта', 'Винная карта'],
-      reviewTexts: ['"Настоящая Италия!"', '"Лучшая паста в городе"']
-    }
-  ];
-
-  useEffect(() => {
-    const filtered = restaurants.filter(restaurant => {
-      return restaurant.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-             restaurant.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
-             restaurant.cuisine.toLowerCase().includes(searchQuery.toLowerCase());
-    });
-    setFilteredRestaurants(filtered);
-  }, [searchQuery]);
-
+const RestaurantList = ({ onSelectRestaurant, searchQuery = '', restaurants = [] }) => {
   const renderStars = (rating) => {
     const fullStars = Math.floor(rating);
     const hasHalfStar = rating % 1 >= 0.5;
@@ -66,33 +15,54 @@ const RestaurantList = ({ onSelectRestaurant, searchQuery = '' }) => {
     );
   };
 
+  if (restaurants.length === 0) {
+    return (
+      <div className="restaurant-list">
+        <div className="no-results">
+          <h3>Рестораны не найдены</h3>
+          <p>Попробуйте изменить параметры поиска или фильтры</p>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="restaurant-list">
       <div className="restaurant-cards-single-column">
-        {filteredRestaurants.map(restaurant => (
-          <div key={restaurant.id} className="restaurant-card-centered">
-            {/* Фото посередине */}
+        {restaurants.map(restaurant => (
+          <div
+            key={restaurant.id}
+            className="restaurant-card-centered"
+            onClick={() => onSelectRestaurant && onSelectRestaurant(restaurant)}
+          >
+            {/* Фото - кликабельно */}
             <div className="card-image-centered">
               <img src={restaurant.image} alt={restaurant.name} />
             </div>
 
-            {/* Информация под фото */}
+            {/* Информация */}
             <div className="card-content-centered">
-              {/* Название */}
-              <h3 className="restaurant-name-centered">{restaurant.name}</h3>
+              {/* Название - кликабельно */}
+              <h3
+                className="restaurant-name-centered"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onSelectRestaurant && onSelectRestaurant(restaurant);
+                }}
+              >
+                {restaurant.name}
+              </h3>
 
-              {/* Рейтинг и отзывы - звезды одного размера */}
+              {/* Рейтинг и отзывы */}
               <div className="rating-section-centered">
                 <div className="stars-centered">
                   {renderStars(restaurant.rating)}
                 </div>
-                <div className="rating-details">
-                  <span className="rating-value-centered">{restaurant.rating}</span>
-                  <span className="reviews-count-centered">({restaurant.reviews} отзывов)</span>
-                </div>
+                <span className="rating-value-centered">{restaurant.rating}</span>
+                <span className="reviews-count-centered">({restaurant.reviews} отзывов)</span>
               </div>
 
-              {/* Направление кухни и средний чек в одной строке */}
+              {/* Направление кухни и средний чек */}
               <div className="info-row">
                 <div className="cuisine-section-centered">
                   <span className="info-label">Направление:</span>
@@ -101,6 +71,26 @@ const RestaurantList = ({ onSelectRestaurant, searchQuery = '' }) => {
                 <div className="price-section-centered">
                   <span className="info-label">Средний чек:</span>
                   <span className="price-value-centered">{restaurant.price}</span>
+                </div>
+              </div>
+
+              {/* Тип заведения и прием */}
+              <div className="info-row">
+                <div className="cuisine-section-centered">
+                  <span className="info-label">Тип заведения:</span>
+                  <span className="cuisine-value-centered">
+                    {restaurant.establishmentType === 'рестораны' ? 'Ресторан' : 'Кафе'}
+                  </span>
+                </div>
+                <div className="price-section-centered">
+                  <span className="info-label">Прием:</span>
+                  <span className="price-value-centered">
+                    {restaurant.meals?.map(meal =>
+                      meal === 'завтрак' ? 'Завтрак' :
+                      meal === 'обед' ? 'Обед' :
+                      'Ужин'
+                    ).join(', ')}
+                  </span>
                 </div>
               </div>
 
@@ -123,14 +113,6 @@ const RestaurantList = ({ onSelectRestaurant, searchQuery = '' }) => {
                   ))}
                 </div>
               </div>
-
-              {/* Кнопка выбора */}
-              <button
-                className="select-btn-centered"
-                onClick={() => onSelectRestaurant && onSelectRestaurant(restaurant)}
-              >
-                Выбрать ресторан
-              </button>
             </div>
           </div>
         ))}

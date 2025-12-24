@@ -12,32 +12,34 @@
 }
 
 .restaurant-card-centered {
-  background: rgba(255, 255, 255, 0.95);
-  border-radius: 25px;
+  background: transparent;
+  border-radius: 15px;
   overflow: hidden;
-  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.1);
   transition: all 0.3s ease;
-  backdrop-filter: blur(10px);
-  padding: 25px;
+  padding: 0;
   display: flex;
   flex-direction: row;
-  align-items: center;
+  align-items: flex-start;
   gap: 30px;
+  cursor: pointer;
+  border: 1px solid rgba(255, 182, 193, 0.5);
 }
 
 .restaurant-card-centered:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.15);
+  transform: translateY(-5px);
+  border-color: rgba(255, 182, 193, 0.8);
+  box-shadow: 0 10px 30px rgba(255, 182, 193, 0.2);
 }
 
 .card-image-centered {
-  width: 300px;
-  height: 200px;
+  width: 350px;
+  height: 230px;
   flex-shrink: 0;
-  border-radius: 15px;
+  border-radius: 12px;
   overflow: hidden;
-  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   position: relative;
+  margin-top: 120px; /* Опускаем картинку на 2-3 см (80px) */
+  border: 1px solid rgba(255, 182, 193, 0.3);
 }
 
 .card-image-centered img {
@@ -55,47 +57,43 @@
   flex: 1;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 15px;
+  padding: 20px 0;
+  margin-top: -10px; /* Опускаем и текст тоже */
 }
 
 .restaurant-name-centered {
   margin: 0;
   color: #333;
-  font-size: 1.8rem;
-  font-weight: 800;
+  font-size: 2rem;
+  font-weight: 700;
   text-align: left;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.restaurant-name-centered:hover {
+  color: #ff6b6b;
 }
 
 .rating-section-centered {
   display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-  gap: 8px;
-  margin-bottom: 10px;
+  align-items: center;
+  gap: 15px;
+  margin-bottom: 5px;
 }
 
 .stars-centered {
   color: #ffd700;
-  font-size: 28px;
-  letter-spacing: 5px;
+  font-size: 24px;
+  letter-spacing: 3px;
   line-height: 1;
 }
 
-.rating-details {
-  display: flex;
-  gap: 15px;
-  align-items: center;
-}
-
 .rating-value-centered {
-  font-weight: 800;
+  font-weight: 700;
   color: #333;
   font-size: 1.2rem;
-  background: #fff9c4;
-  padding: 5px 12px;
-  border-radius: 20px;
 }
 
 .reviews-count-centered {
@@ -107,14 +105,11 @@
 .info-row {
   display: flex;
   gap: 30px;
-  justify-content: space-between;
   margin-bottom: 15px;
 }
 
 .cuisine-section-centered,
-.price-section-centered,
-.menu-section-centered,
-.reviews-section-centered {
+.price-section-centered {
   display: flex;
   flex-direction: column;
   gap: 8px;
@@ -129,23 +124,20 @@
 }
 
 .cuisine-value-centered {
-  color: #333;
-  font-weight: 700;
-  font-size: 1.1rem;
-  background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
-  padding: 8px 16px;
-  border-radius: 15px;
-  text-align: center;
+  background: var(--pink-glass);
+  border: 1px solid var(--pink-border);
 }
 
+
 .price-value-centered {
-  color: #333;
-  font-weight: 700;
-  font-size: 1.1rem;
-  background: linear-gradient(135deg, #e8f5e9 0%, #c8e6c9 100%);
-  padding: 8px 16px;
-  border-radius: 15px;
-  text-align: center;
+  background: var(--pink-glass);
+  border: 1px solid var(--pink-border);
+}
+
+
+.menu-section-centered,
+.reviews-section-centered {
+  margin-top: 10px;
 }
 
 .menu-items-centered {
@@ -156,66 +148,38 @@
 }
 
 .menu-item-centered {
-  background-color: #f5f5f5;
-  color: #555;
-  padding: 8px 15px;
-  border-radius: 20px;
-  font-size: 0.9rem;
-  border: 2px solid #e0e0e0;
-  font-weight: 500;
+  background: var(--pink-glass);
+  border: 1px solid var(--pink-border);
 }
+
 
 .review-quotes-centered {
   display: flex;
   flex-direction: column;
-  gap: 12px;
+  gap: 10px;
   margin-top: 5px;
 }
 
 .review-quote-centered {
-  margin: 0;
-  color: #555;
-  font-style: italic;
-  font-size: 0.95rem;
-  padding: 12px 15px;
-  background: #f9f9f9;
-  border-radius: 15px;
-  border-left: 4px solid #ff6b6b;
+  background: var(--pink-glass);
+  border-left: 3px solid var(--pink-border);
 }
 
-.select-btn-centered {
-  margin-top: 20px;
-  padding: 16px;
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-  color: white;
-  border: none;
-  border-radius: 15px;
-  font-size: 18px;
-  font-weight: 700;
-  cursor: pointer;
-  transition: all 0.3s ease;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 6px 20px rgba(76, 175, 80, 0.3);
-  align-self: flex-start;
-}
-
-.select-btn-centered:hover {
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
-  transform: translateY(-3px);
-  box-shadow: 0 10px 25px rgba(76, 175, 80, 0.5);
-}
 
 @media (max-width: 768px) {
   .restaurant-card-centered {
     flex-direction: column;
-    padding: 20px;
+    padding: 15px;
   }
 
   .card-image-centered {
     width: 100%;
     height: 200px;
-    order: -1;
+    margin-top: 0; /* На мобильных не опускаем */
+  }
+
+  .card-content-centered {
+    margin-top: 0; /* На мобильных не опускаем */
   }
 
   .info-row {
@@ -224,25 +188,57 @@
   }
 
   .restaurant-name-centered {
+    font-size: 1.6rem;
     text-align: center;
   }
 
   .rating-section-centered {
-    align-items: center;
+    justify-content: center;
   }
 
   .stars-centered {
-    font-size: 24px;
-    letter-spacing: 3px;
+    font-size: 20px;
+    letter-spacing: 2px;
   }
 
   .menu-items-centered {
     flex-direction: column;
     align-items: flex-start;
   }
+}
+/* Добавить в конец RestaurantList.css */
 
-  .select-btn-centered {
-    align-self: stretch;
-    text-align: center;
+/* Стили для отображения информации о типе заведения и приеме */
+.restaurant-card-centered .info-row:nth-child(3) {
+  margin-bottom: 15px;
+}
+
+.cuisine-value-centered,
+.price-value-centered {
+  background: rgba(255, 192, 203, 0.3);
+  border: 1px solid rgba(255, 182, 193, 0.4);
+  padding: 8px 15px;
+  border-radius: 20px;
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+  display: inline-block;
+  margin-top: 5px;
+}
+
+/* Стили для отображения символов ₽ */
+.price-value-centered {
+  font-weight: 600;
+}
+
+/* Адаптивность для дополнительной информации */
+@media (max-width: 768px) {
+  .restaurant-card-centered .info-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .restaurant-card-centered .info-row:nth-child(3) {
+    margin-bottom: 15px;
   }
 }

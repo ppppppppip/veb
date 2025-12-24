@@ -1,0 +1,140 @@
+/* VisitsHistory.css */
+.visits-history {
+  padding: 40px;
+  background: linear-gradient(135deg, #ffc0cb 0%, #ffb6c1 100%);
+  min-height: 100vh;
+}
+
+.visits-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 40px;
+  background: rgba(255, 255, 255, 0.9);
+  border-radius: 25px;
+  backdrop-filter: blur(10px);
+}
+
+.visits-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding-bottom: 20px;
+  border-bottom: 2px solid #ffc0cb;
+}
+
+.back-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: none;
+  border: none;
+  color: #333;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  padding: 10px 15px;
+  border-radius: 10px;
+}
+
+.back-btn:hover {
+  background: rgba(255, 192, 203, 0.2);
+  transform: translateX(-5px);
+}
+
+.visits-title {
+  font-size: 32px;
+  color: #333;
+  font-weight: 700;
+  text-align: center;
+  flex: 1;
+}
+
+.visits-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.visit-card {
+  background: white;
+  border-radius: 20px;
+  padding: 25px;
+  display: grid;
+  grid-template-columns: 50px 120px 1fr 150px;
+  gap: 25px;
+  align-items: center;
+  transition: all 0.3s;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.visit-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+}
+
+.visit-number {
+  font-size: 20px;
+  font-weight: bold;
+  color: #ff6b6b;
+  text-align: center;
+}
+
+.visit-date {
+  font-size: 16px;
+  font-weight: 600;
+  color: #333;
+}
+
+.visit-restaurant {
+  font-size: 16px;
+  color: #666;
+}
+
+.visit-status {
+  font-size: 14px;
+  color: #ff6b6b;
+  font-style: italic;
+  padding: 8px 15px;
+  background: rgba(255, 107, 107, 0.1);
+  border-radius: 10px;
+  text-align: center;
+}
+
+.no-visits {
+  text-align: center;
+  padding: 60px 20px;
+  color: #666;
+  font-size: 18px;
+}
+
+@media (max-width: 768px) {
+  .visits-history {
+    padding: 20px;
+  }
+
+  .visits-content {
+    padding: 20px;
+  }
+
+  .visits-header {
+    flex-direction: column;
+    gap: 20px;
+    text-align: center;
+  }
+
+  .back-btn {
+    align-self: flex-start;
+  }
+
+  .visit-card {
+    grid-template-columns: 1fr;
+    gap: 15px;
+    text-align: center;
+  }
+
+  .visit-status {
+    grid-column: 1;
+  }
+}

@@ -1,78 +1,58 @@
 /* src/components/RestaurantDetail/RestaurantDetail.css */
-/* В RestaurantDetail.css обновите первый селектор .restaurant-detail-new */
 .restaurant-detail-new {
-  background: rgba(255, 255, 255, 0.98);
-  border-radius: 30px;
-  padding: 30px;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
-  backdrop-filter: blur(20px);
+  padding: 20px;
   max-width: 1200px;
   margin: 0 auto;
-  width: 100%;
+  min-height: 100vh;
 }
 
+/* Кнопка назад */
 .back-button-new {
-  background: #f0f0f0;
+  background: rgba(255, 255, 255, 0.8);
   border: none;
   padding: 12px 25px;
   border-radius: 25px;
   font-size: 16px;
   cursor: pointer;
   margin-bottom: 30px;
-  transition: all 0.3s;
+  transition: 0.3s;
   color: #666;
-  display: flex;
-  align-items: center;
-  gap: 10px;
   font-weight: 600;
 }
 
 .back-button-new:hover {
-  background: #e0e0e0;
+  background: rgba(255, 255, 255, 0.9);
   transform: translateX(-5px);
-  color: #333;
 }
 
+/* Заголовок */
 .restaurant-title-new {
   text-align: center;
+  font-size: 2.5rem;
+  margin-bottom: 40px;
   color: #333;
-  font-size: 3rem;
-  font-weight: 800;
-  margin: 0 0 30px 0;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
 }
 
-/* Галерея из 3 фотографий */
-.gallery-section {
-  margin: 30px 0 40px;
-}
-
+/* Галерея */
 .gallery-container {
   display: flex;
-  gap: 20px;
+  gap: 15px;
   height: 350px;
-  justify-content: center;
-  align-items: center;
 }
 
 .gallery-image {
   flex: 1;
-  border-radius: 20px;
+  border-radius: 15px;
   overflow: hidden;
-  height: 100%;
-  position: relative;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+  filter: blur(4px) opacity(0.8);
   transition: all 0.5s ease;
 }
 
-.gallery-image:hover {
-  transform: scale(1.03);
-  z-index: 2;
+.gallery-image.centered {
+  flex: 1.5;
+  filter: none;
+  opacity: 1;
+  z-index: 1;
 }
 
 .gallery-image img {
@@ -81,178 +61,249 @@
   object-fit: cover;
 }
 
-.left-blur {
-  filter: blur(3px);
-  opacity: 0.8;
-}
-
-.right-blur {
-  filter: blur(3px);
-  opacity: 0.8;
-}
-
-.center-image {
-  flex: 1.5;
-  z-index: 1;
-}
-
-/* Объединенная плашка с рейтингом, адресом и кнопкой */
-.unified-info-plate {
-  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
-  border-radius: 25px;
-  padding: 30px;
-  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+/* КОНТЕНТ */
+.content-container {
   display: flex;
-  align-items: center;
+  gap: 50px;
+  margin-top: 60px;
+  align-items: flex-start;
+}
+
+/* ЛЕВАЯ КОЛОНКА */
+.left-column {
+  flex: 1;
+}
+
+/* МЕРОПРИЯТИЯ */
+.events-section {
+  margin-bottom: 60px;
+}
+
+.events-title {
+  margin-bottom: 25px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+/* РАВНОМЕРНО В ОДНУ СТРОКУ */
+.events-grid {
+  display: flex;
   justify-content: space-between;
-  gap: 30px;
-  margin: 40px auto;
-  max-width: 1000px;
-  border: 2px solid #e8f5e9;
+  gap: 20px;
 }
 
-.unified-rating-section {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 10px;
+.event-card {
   flex: 1;
-  padding: 15px;
-}
-
-.unified-rating-value {
-  font-size: 3rem;
-  font-weight: 800;
-  color: #333;
-  line-height: 1;
-}
-
-.unified-stars {
-  color: #ffd700;
-  font-size: 28px;
-  letter-spacing: 5px;
-  margin-bottom: 5px;
-}
-
-.unified-reviews-count {
-  color: #666;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.unified-address-section {
-  flex: 2;
-  padding: 15px 25px;
-  border-left: 2px solid #e0e0e0;
-  border-right: 2px solid #e0e0e0;
+  min-width: 0;
+  background: rgba(255, 255, 255, 0.8);
+  border-radius: 12px;
+  padding: 20px 10px;
   text-align: center;
+  border: 1px solid rgba(255, 182, 193, 0.3);
+  transition: all 0.3s;
 }
 
-.unified-address-text {
-  font-size: 1.1rem;
-  font-weight: 600;
-  color: #333;
-  margin: 0 0 10px 0;
-  line-height: 1.5;
+.event-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(255, 182, 193, 0.2);
 }
 
-.unified-phone {
-  color: #666;
+.event-name {
   font-size: 0.9rem;
-  font-weight: 500;
+  font-weight: 600;
+  white-space: nowrap;
+  color: #333;
 }
 
-.unified-booking-section {
-  flex: 1;
+/* МЕНЮ */
+.menu-section {
+  margin-bottom: 40px;
+}
+
+.menu-title {
+  margin-bottom: 25px;
+  font-size: 1.5rem;
+  color: #333;
+}
+
+.menu-items-list {
   display: flex;
   flex-direction: column;
+  gap: 15px;
+}
+
+.menu-item {
+  display: flex;
   align-items: center;
   gap: 15px;
-  padding: 15px;
+  padding: 15px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 182, 193, 0.3);
+  transition: all 0.3s;
 }
 
-.unified-book-button {
-  padding: 16px 40px;
-  background: linear-gradient(135deg, #4CAF50 0%, #45a049 100%);
-  color: white;
+.menu-item:hover {
+  transform: translateX(5px);
+  box-shadow: 0 3px 10px rgba(255, 182, 193, 0.15);
+}
+
+.menu-icon {
+  font-size: 24px;
+}
+
+.menu-name {
+  font-size: 16px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* ПРАВАЯ КОЛОНКА - ОПУСКАЕМ ВСЮ ПЛАШКУ */
+.right-column {
+  width: 350px;
+  margin-top: 200px;
+}
+
+/* STICKY ПЛАШКА */
+.fixed-info-panel {
+  position: sticky;
+  top: 440px;
+  background: rgba(255, 182, 193, 0.9);
+  border-radius: 20px;
+  padding: 25px 20px;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 182, 193, 0.5);
+  box-shadow: 0 10px 40px rgba(255, 182, 193, 0.3);
+}
+
+.info-panel-content {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.rating-section-simple {
+  text-align: center;
+  font-size: 18px;
+  font-weight: 600;
+  color: #333;
+}
+
+.address-section-simple {
+  border-top: 1px solid rgba(255, 255, 255, 0.3);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 15px 0;
+  color: #333;
+  font-size: 14px;
+  line-height: 1.5;
+  text-align: center;
+}
+
+.book-button-simple {
+  width: 100%;
+  padding: 15px;
+  border-radius: 12px;
   border: none;
-  border-radius: 15px;
-  font-size: 1.2rem;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 600;
   cursor: pointer;
+  background: rgba(255, 255, 255, 0.9);
   transition: all 0.3s;
   text-transform: uppercase;
-  letter-spacing: 1px;
-  box-shadow: 0 8px 25px rgba(76, 175, 80, 0.3);
-  width: 100%;
-  max-width: 250px;
+  color: #333;
 }
 
-.unified-book-button:hover {
-  background: linear-gradient(135deg, #45a049 0%, #3d8b40 100%);
-  transform: translateY(-3px);
-  box-shadow: 0 12px 30px rgba(76, 175, 80, 0.5);
+.book-button-simple:hover {
+  background: white;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(255, 182, 193, 0.3);
 }
 
-.unified-booking-note {
-  text-align: center;
-  color: #666;
-  font-size: 0.8rem;
-  margin: 0;
-}
-
+/* MOBILE */
 @media (max-width: 1024px) {
-  .gallery-container {
-    height: 300px;
-  }
-
-  .restaurant-title-new {
-    font-size: 2.5rem;
-  }
-
-  .unified-info-plate {
+  .content-container {
     flex-direction: column;
-    gap: 25px;
-    padding: 25px;
   }
 
-  .unified-address-section {
-    border-left: none;
-    border-right: none;
-    border-top: 2px solid #e0e0e0;
-    border-bottom: 2px solid #e0e0e0;
-    padding: 20px 0;
+  .right-column {
     width: 100%;
+    margin-top: 0;
+  }
+
+  .fixed-info-panel {
+    position: static;
+    top: auto;
+    max-width: 400px;
+    margin: 30px auto;
+  }
+
+  .events-grid {
+    flex-direction: column;
+  }
+
+  /* На мобильных убираем блюр */
+  .gallery-image {
+    filter: none;
+    opacity: 1;
   }
 }
 
 @media (max-width: 768px) {
-  .restaurant-detail-new {
-    padding: 20px;
-  }
-
   .gallery-container {
     flex-direction: column;
     height: auto;
-    gap: 10px;
   }
 
-  .gallery-image {
-    width: 100%;
+  .gallery-image,
+  .gallery-image.centered {
+    flex: 1;
     height: 200px;
-  }
-
-  .left-blur,
-  .right-blur {
-    filter: none;
-    opacity: 1;
   }
 
   .restaurant-title-new {
     font-size: 2rem;
   }
 
-  .unified-book-button {
-    max-width: 300px;
+  .events-title,
+  .menu-title {
+    font-size: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .restaurant-detail-new {
+    padding: 15px;
+  }
+
+  .gallery-container {
+    gap: 10px;
+  }
+
+  .gallery-image,
+  .gallery-image.centered {
+    height: 150px;
+  }
+
+  .events-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .event-card {
+    padding: 15px 5px;
+  }
+
+  .event-name {
+    font-size: 0.8rem;
+  }
+
+  .menu-item {
+    padding: 12px 15px;
+  }
+
+  .menu-icon {
+    font-size: 20px;
+  }
+
+  .menu-name {
+    font-size: 14px;
   }
 }
